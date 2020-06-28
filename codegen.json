@@ -1,0 +1,13 @@
+{
+  "schema": ["./node_modules/ts-mongo-codegen/dist/types/mongo-types.ts", "./src/gql/*.ts"],
+  "generates": {
+    "./src/types.generated.ts": {
+      "plugins": [
+        "typescript",
+        "typescript-operations",
+        "typescript-resolvers",
+        "ts-mongo-codegen"
+      ]
+    }
+  }
+}
