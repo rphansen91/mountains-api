@@ -35,10 +35,12 @@ type Mountain @collection(name: "mountains", crud: true) {
 }
 
 type Query {
+  # Used as a base to build off
   empty: String
 }
 
 type Mutation {
+  # Used as a base to build off
   empty: String
 }
 ```
@@ -46,6 +48,8 @@ type Mutation {
 ### Generate
 
 `yarn generate`
+
+Generate resolvers and typings based on schema
 
 ### Scrape
 
