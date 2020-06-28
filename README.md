@@ -46,3 +46,9 @@ type Mutation {
 ### Generate
 
 `yarn generate`
+
+### Scrape
+
+`yarn scrape`
+
+Scrape wikipedia mountains using `cheerio` and insert into our mongo db using ApolloClient.
