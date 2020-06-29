@@ -5,10 +5,13 @@ import { context } from './context'
 
 config()
 const port = process.env.PORT || 8081
+const playground = {
+  shareEnabled: true,
+} as any
 new ApolloServer({
   context,
   introspection: true,
-  playground: true,
+  playground,
   schema,
 })
   .listen(port)
