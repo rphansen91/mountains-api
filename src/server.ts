@@ -7,6 +7,8 @@ config()
 const port = process.env.PORT || 8081
 new ApolloServer({
   context,
+  introspection: true,
+  playground: true,
   schema,
 })
   .listen(port)
