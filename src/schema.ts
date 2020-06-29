@@ -29,6 +29,7 @@ const resolvers = composeResolvers(
     },
   },
   {
+    // Make sure mutation requests are authenticated
     Mutation: [isAuthenticated()],
   }
 )
