@@ -38,7 +38,7 @@ export async function insertAllMountains() {
   const mountains = await scrapeMountains()
   const chunks = chunk(mountains, 100)
   for (const chunk in chunks) {
-    console.log(`Insert ${Number(chunk) + 1} of ${chunks.length}`)
+    console.log(`Insert page ${Number(chunk) + 1} of ${chunks.length}`)
     await insertMountains(chunks[chunk])
   }
 }
