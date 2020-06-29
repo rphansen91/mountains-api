@@ -15,6 +15,7 @@ if (!name) throw new Error('Mongo name string not found, add MONGO_NAME to .env'
 const mongoConnection = mongoConnect(uri)
 
 export const context = async (req: any) => {
+  console.log(req)
   const userId = get(req, 'headers.X-Auth-Token') === password ? 'USER_ID' : ''
   // Executed every request
   const db = (await mongoConnection).db(name)
