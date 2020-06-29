@@ -6,9 +6,6 @@ import { context } from './context'
 config()
 const port = process.env.PORT || 8081
 const playground = {
-  codeTheme: {
-    editorBackground: '#31679',
-  },
   shareEnabled: true,
 } as any
 new ApolloServer({
