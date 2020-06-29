@@ -2,7 +2,9 @@ import { makeExecutableSchema } from '@graphql-tools/schema'
 import { addResolveFunctionsToSchema } from 'apollo-server'
 import { graphqlTypeDate, graphqlTypeObjectId, makeAugmentedSchema, mongoTypeDefs } from 'ts-mongo-codegen'
 import { mountainMutationResolvers, mountainQueryResolvers, mountainResolvers } from './types.generated'
+import { composeResolvers } from '@graphql-tools/resolvers-composition'
 import { mountainSchema } from './gql/mountains'
+import { isAuthenticated } from './auth'
 
 // Make an executable schema with the mongo types and our custom mountain schema type
 const executableSchema = makeExecutableSchema({
@@ -14,17 +16,22 @@ export const schema = makeAugmentedSchema(executableSchema)
 
 // The mountainResolvers, mountainMutationResolvers, and mountainQueryResolvers are generated types
 // Run `yarn generate` to update types or add more
-const resolvers = {
-  Date: graphqlTypeDate,
-  Mountain: mountainResolvers,
-  Mutation: {
-    ...mountainMutationResolvers,
+const resolvers = composeResolvers(
+  {
+    Date: graphqlTypeDate,
+    Mountain: mountainResolvers,
+    Mutation: {
+      ...mountainMutationResolvers,
+    },
+    ObjectId: graphqlTypeObjectId,
+    Query: {
+      ...mountainQueryResolvers,
+    },
   },
-  ObjectId: graphqlTypeObjectId,
-  Query: {
-    ...mountainQueryResolvers,
-  },
-}
+  {
+    Mutation: [isAuthenticated()],
+  }
+)
 
 // Finally we add our generated resolvers to the schema
 addResolveFunctionsToSchema({
