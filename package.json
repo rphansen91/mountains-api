@@ -27,7 +27,7 @@
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongodb": "^3.5.9",
     "ts-mongo-codegen": "^0.1.7"
   },
